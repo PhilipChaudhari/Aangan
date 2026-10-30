@@ -83,97 +83,44 @@
 
 <body>
 
-	
-<script type="module">
-import { auth } from "./firebase.js";
+// Import Firebase functions
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 
 import {
+  getAuth,
   createUserWithEmailAndPassword,
-  updateProfile,
-  sendEmailVerification
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-const signupForm = document.getElementById("signupForm");
-
-signupForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const fullName = document.getElementById("fullName").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-
-  if (password !== confirmPassword) {
-    alert("Passwords do not match!");
-    return;
-  }
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    await updateProfile(userCredential.user, {
-      displayName: fullName
-    });
-
-    await sendEmailVerification(userCredential.user);
-
-    alert("Your AANGAN account has been created! Please verify your email.");
-
-    window.location.href = "login.html";
-
-  } catch (error) {
-    alert("Signup error: " + error.message);
-  }
-});
-</script>
-
-<CodeBlock language="javascript" editable>
-<script type="module">
-import { auth } from "./firebase.js";
-
-import {
   signInWithEmailAndPassword,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
-const loginForm = document.getElementById("loginForm");
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBXletpfqthtOdAfR8dVesf9yL-4e7CGXw",
+  authDomain: "aangan-website-57e85.firebaseapp.com",
+  projectId: "aangan-website-57e85",
+  storageBucket: "aangan-website-57e85.firebasestorage.app",
+  messagingSenderId: "980420981146",
+  appId: "1:980420981146:web:9fce73c48380e0b57c4a23",
+  measurementId: "G-JLF1E8ZEYB"
+};
 
-loginForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+// Initialize Authentication
+const auth = getAuth(app);
 
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+// Export Firebase services
+export {
+  app,
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+};
 
-    const user = userCredential.user;
-
-    if (!user.emailVerified) {
-      await signOut(auth);
-      alert("Please verify your email before logging in.");
-      return;
-    }
-
-    alert("Welcome to AANGAN!");
-
-    // Replace this with your actual student dashboard filename.
-    window.location.href = "student-dashboard.html";
-
-  } catch (error) {
-    alert("Login failed: " + error.message);
-  }
-});
-</script>
 
 
     <div class="signup-box">
