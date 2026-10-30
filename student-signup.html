@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AANGAN | Student Sign Up</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #101c33;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .signup-box {
+            background-color: white;
+            width: 350px;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #101c33;
+            letter-spacing: 3px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #b18a3b;
+        }
+
+        p {
+            text-align: center;
+            color: #718096;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 22px;
+            background-color: #101c33;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #27b5ad;
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #a77924;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-box">
+	<h1> EMRS-MSA</h1>
+        <h1>AANGAN</h1>
+        <h2>Student Sign Up</h2>
+
+        <p>Create your student account</p>
+
+        <form id="signupForm">
+
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your full name" required>
+
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your email" required>
+
+            <label>Username</label>
+            <input type="text" placeholder="Choose a username" required>
+
+           
+
+            <label>Password</label>
+            <input type="password" id="password"
+                   placeholder="Create a password" required>
+
+            <label>Confirm Password</label>
+            <input type="password" id="confirmPassword"
+                   placeholder="Enter password again" required>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+        <div class="back">
+            Already have an account?
+            <a href="login.html">Sign In</a>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+            } else {
+                alert("Your details are ready! Connect Firebase to create your account.");
+            }
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AANGAN | Teacher Sign Up</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #101c33;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .signup-box {
+            background-color: white;
+            width: 370px;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #101c33;
+            letter-spacing: 3px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #b18a3b;
+        }
+
+        p {
+            text-align: center;
+            color: #718096;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px;
+            margin-top: 7px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 22px;
+            background-color: #101c33;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #27b5ad;
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #a77924;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .notice {
+            background-color: #fff4dc;
+            padding: 12px;
+            border-radius: 8px;
+            color: #72551e;
+            font-size: 12px;
+            margin-top: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-box">
+
+        <h1>AANGAN</h1>
+        <h2>Faculty Sign Up</h2>
+
+        <p>
+            Request your teacher account
+            at EMRS-MSA, Vadodara, Gujarat.
+        </p>
+
+        <form id="teacherSignupForm">
+
+            <label for="name">Full Name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <label for="email">Official Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                required
+            >
+
+            <label for="phone">Mobile Number</label>
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter your mobile number"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required
+            >
+
+            <label for="subject">Subject / Department</label>
+            <select id="subject" required>
+                <option value="">Select your subject</option>
+                <option>English</option>
+                <option>Hindi</option>
+                <option>Gujarati</option>
+                <option>Mathematics</option>
+                <option>Science</option>
+                <option>Social Science</option>
+                <option>Computer Science</option>
+                <option>Physical Education</option>
+                <option>Other</option>
+            </select>
+
+            <label for="staffid">Staff ID (if available)</label>
+            <input
+                type="text"
+                id="staffid"
+                placeholder="Enter your staff ID"
+            >
+
+            <label for="reason">Why do you want to join AANGAN?</label>
+            <input
+                type="text"
+                id="reason"
+                placeholder="Write a short reason"
+                required
+            >
+
+            <button type="submit">
+                Submit Account Request
+            </button>
+
+        </form>
+
+        <div class="notice">
+            <strong>Admin Approval Required</strong><br>
+            Your request will need to be reviewed by the AANGAN
+            administrator. You cannot access the faculty portal
+            until your account is approved.
+        </div>
+
+        <div class="back">
+            Already have an account?
+            <a href="teacher-login.html">Sign In</a>
+
+            <p>
+                <a href="login.html">Back to Main Login</a>
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById("teacherSignupForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            alert("Your teacher account request is ready! Connect Firebase to securely submit it for admin approval.");
+
+        });
+    </script>
+
+</body>
+</html>
