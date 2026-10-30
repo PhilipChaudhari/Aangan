@@ -83,6 +83,110 @@
 
 <body>
 
+	
+<script type="module">
+import { auth } from "./firebase.js";
+
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+const signupForm = document.getElementById("signupForm");
+
+signupForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const fullName = document.getElementById("fullName").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    await updateProfile(userCredential.user, {
+      displayName: fullName
+    });
+
+    await sendEmailVerification(userCredential.user);
+
+    alert("Your AANGAN account has been created! Please verify your email.");
+
+    window.location.href = "login.html";
+
+  } catch (error) {
+    alert("Signup error: " + error.message);
+  }
+});
+</script>
+```
+
+This creates an actual Firebase account and sends an email verification link. The username is collected but isn't stored yet; we'll add a Firestore user profile later.
+
+## Step 8: Connect the login page
+
+Your main `login.html` currently acts as the entry point to the student and faculty login pages. The actual authentication should happen on the respective login forms.
+
+For now, we can connect the student login form. Make sure its form has ID `loginForm`, and its email and password inputs have IDs `email` and `password`.
+
+Add this before `</body>` on the student login page:
+
+<CodeBlock language="javascript" editable>
+<script type="module">
+import { auth } from "./firebase.js";
+
+import {
+  signInWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+const loginForm = document.getElementById("loginForm");
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    const user = userCredential.user;
+
+    if (!user.emailVerified) {
+      await signOut(auth);
+      alert("Please verify your email before logging in.");
+      return;
+    }
+
+    alert("Welcome to AANGAN!");
+
+    // Replace this with your actual student dashboard filename.
+    window.location.href = "student-dashboard.html";
+
+  } catch (error) {
+    alert("Login failed: " + error.message);
+  }
+});
+</script>
+
+
     <div class="signup-box">
 	<h1> EMRS-MSA</h1>
         <h1>AANGAN</h1>
