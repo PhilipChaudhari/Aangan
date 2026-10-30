@@ -131,17 +131,6 @@ signupForm.addEventListener("submit", async (event) => {
   }
 });
 </script>
-```
-
-This creates an actual Firebase account and sends an email verification link. The username is collected but isn't stored yet; we'll add a Firestore user profile later.
-
-## Step 8: Connect the login page
-
-Your main `login.html` currently acts as the entry point to the student and faculty login pages. The actual authentication should happen on the respective login forms.
-
-For now, we can connect the student login form. Make sure its form has ID `loginForm`, and its email and password inputs have IDs `email` and `password`.
-
-Add this before `</body>` on the student login page:
 
 <CodeBlock language="javascript" editable>
 <script type="module">
